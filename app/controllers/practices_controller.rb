@@ -3,9 +3,12 @@ class PracticesController < ApplicationController
     @practices = Practice.all
     render json: @practices
   end
+  def show
+    @practice = Practice.find_by(id: 3)
+    render json: @practice
+  end
   def create
     @practice = Practice.new(practice_params)
-
     if @practice.save
       render json: @practice, status: :created, location: @practice
     else

@@ -1,5 +1,9 @@
 version: "3"
 
+volumes:
+  db_data:
+  sockets:
+
 services:
   app:
     build:
@@ -18,28 +22,14 @@ services:
       - db
     environment:
       - "DB_PASSWORD=postgres"
-    # extends:
-    #   file: ./docker/mysql/password.yml
-    #   service: password
-  # db:
-  #   build:
-  #     context: .
-  #     dockerfile: ./docker/mysql/Dockerfile
-  #   ports:
-  #     - "3306:3306"
-  #   environment:
-  #     MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-  #   volumes:
-  #     - db_data:/var/lib/mysql
-  #   extends:
-  #     file: ./docker/mysql/password.yml
-  #     service: password
   db:
     image: postgres
     environment:
       - "POSTGRES_USER=postgres"
       - "POSTGRES_PASSWORD=postgres"
       - "POSTGRES_HOST_AUTH_METHOD=trust"
+    volumes:
+      - "./db-data:/var/lib/postgresql/data"
 
   nginx:
     build:
@@ -52,7 +42,3 @@ services:
       - sockets:/app/tmp/sockets
     depends_on:
       - app
-
-volumes:
-  db_data:
-  sockets:

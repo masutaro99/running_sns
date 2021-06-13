@@ -7,6 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 if Rails.env == "development"
   (1..50).each do |i|
-    Practice.create(title: "練習#{i}", description: "内容#{i}", distance: float(i))
+    Practice.create(title: "練習#{i}", description: "内容#{i}", distance: Float(i))
   end
 end
