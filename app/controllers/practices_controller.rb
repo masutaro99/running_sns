@@ -1,5 +1,5 @@
 class PracticesController < ApplicationController
-  before_action :set_target_practice, only: %i[show update]
+  before_action :set_target_practice, only: %i[show update destroy]
 
   def index
     @practices = Practice.all
@@ -19,6 +19,9 @@ class PracticesController < ApplicationController
   end
   def update
     @practice.update(practice_params)
+  end
+  def destroy
+    @practice.destroy
   end
   private
     # Use callbacks to share common setup or constraints between actions.
