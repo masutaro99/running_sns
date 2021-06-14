@@ -23,7 +23,7 @@ workflows:
             - aws-ecr/build-and-push-image
           family: "running-sns2" # ECSのタスク定義名
           cluster-name: "${ECS_ARN}" #ECSのクラスターのARN
-          service-name: "test" #サービス名
+          service-name: "running-sns" #サービス名
           container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
   # Railsのデプロイ
   rails-deploy:
@@ -45,6 +45,6 @@ workflows:
             - aws-ecr/build-and-push-image
           family: "running-sns2" # ECSのタスク定義名
           cluster-name: "${ECS_ARN}" #ECSのクラスターのARN
-          service-name: "test" #サービス名
+          service-name: "running-sns" #サービス名
           container-image-name-updates: "container=rails,tag=${CIRCLE_SHA1}"
 #AWS_ECR_ACCOUNT_URL => ${アカウントID}.dkr.ecr.${リージョン}.amazonaws.com
