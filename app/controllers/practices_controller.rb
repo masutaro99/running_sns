@@ -1,10 +1,12 @@
 class PracticesController < ApplicationController
+  before_action :set_target_practice, only: %i[show update]
+
   def index
     @practices = Practice.all
     render json: @practices
   end
   def show
-    @practice = Practice.find_by(id: 3)
+    @practice = Practice.find_by(id: params[:id])
     render json: @practice
   end
   def create
@@ -15,14 +17,17 @@ class PracticesController < ApplicationController
       render json: @practice.errors, status: :unprocessable_entity
     end
   end
+  def update
+    @practice.update(practice_params)
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_practice
-      @practice = Practice.find(params[:id])
+    def set_target_practice
+      @practice = Practice.find_by(id: params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def practice_params
-      params.require(:practice).permit(:title, :description, :distance)
+      params.permit(:title, :description, :distance)
     end
 end
