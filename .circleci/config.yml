@@ -21,7 +21,7 @@ workflows:
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build-and-push-image
-          family: "running-sns" # ECSのタスク定義名
+          family: "running-sns2" # ECSのタスク定義名
           cluster-name: "${ECS_ARN}" #ECSのクラスターのARN
           service-name: "running-sns" #サービス名
           container-image-name-updates: "container=running-sns-nginx,tag=${CIRCLE_SHA1}"
@@ -43,7 +43,7 @@ workflows:
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build-and-push-image
-          family: "running-sns" # ECSのタスク定義名
+          family: "running-sns2" # ECSのタスク定義名
           cluster-name: "${ECS_ARN}" #ECSのクラスターのARN
           service-name: "running-sns" #サービス名
           container-image-name-updates: "container=running-sns-rails,tag=${CIRCLE_SHA1}"
