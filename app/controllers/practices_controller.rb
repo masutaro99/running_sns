@@ -31,6 +31,6 @@ class PracticesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def practice_params
-      params.permit(:title, :description, :distance, :userid, :username)
+      params.permit(:title, :description, :distance, :userid, :username, :date)
     end
 end
