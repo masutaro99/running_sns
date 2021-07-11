@@ -1249,6 +1249,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk
+  aws-sdk-quicksight
   bootsnap (>= 1.4.2)
   byebug
   dotenv-rails

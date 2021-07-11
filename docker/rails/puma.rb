@@ -5,4 +5,6 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 plugin :tmp_restart
 
 app_root = File.expand_path("../..", __FILE__)
+# nginxがアクセスできるディレクトリにバインドする
+# 今回は各コンテナに対してsocketsボリュームをマウントする(パスは/app/tmp/sockets)
 bind "unix://#{app_root}/tmp/sockets/puma.sock"
